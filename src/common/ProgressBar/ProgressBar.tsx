@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { PorgressBarWrapper, PorgressBarContent } from './styledComponents'
 
 interface ProgressBarProps {
@@ -11,26 +11,31 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   value: number
 }) => {
   const [progress, setProgress] = useState(0)
+  const progressRef = useRef(0)
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setProgress(prevProgress => {
-        const nextProgress = prevProgress + 1
-        if (nextProgress >= value) {
-          clearInterval(intervalId)
-        }
-        return nextProgress
-      })
-    }, 10)
-
-    return () => {
-      clearInterval(intervalId)
+    const animateProgress = () => {
+      const nextProgress =
+        progressRef.current < value
+          ? progressRef.current + 1
+          : progressRef.current - 1
+      if (nextProgress === value) {
+        setProgress(value)
+        return
+      }
+      setProgress(nextProgress)
+      progressRef.current = nextProgress
+      requestAnimationFrame(animateProgress)
     }
+
+    requestAnimationFrame(animateProgress)
   }, [value])
 
   return (
     <PorgressBarWrapper>
-      <PorgressBarContent progress={progress} />
+      <PorgressBarContent progress={progress}>
+        <span>{`${progress}%`}</span>
+      </PorgressBarContent>
     </PorgressBarWrapper>
   )
 }

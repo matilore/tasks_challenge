@@ -1,3 +1,3 @@
 export interface PorgressBarContentProps {
-  progress: number;
+  progress: number
 }

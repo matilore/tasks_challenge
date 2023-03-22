@@ -1,7 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import ProgressBar from "@common/ProgressBar";
-import GroupedTasks from "@features/TasksChecker";
+import React from 'react'
+import styled from 'styled-components'
+import Dashboard from '@features/Dashboard'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -9,25 +8,14 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const TasksWrapper = styled.div`
-  width: 600px;
-  hieght: 400px;
-`;
-
-const Title = styled.h2``;
+`
 
 const App = () => {
   return (
     <Wrapper>
-      <TasksWrapper>
-        <Title>Lodgify Grouped Tasks</Title>
-        <ProgressBar value={58} />
-        <GroupedTasks />
-      </TasksWrapper>
+      <Dashboard />
     </Wrapper>
-  );
-};
+  )
+}
 
-export default App;
+export default App
