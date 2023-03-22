@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "lib": ["esnext", "dom"],
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "removeComments": true,
+    "baseUrl": "./",
+    "paths": {
+      "@common/*": ["src/common/*"],
+      "@features/*": ["src/features/*"],
+      "@styles/*": ["src/styles/*"],
+      "@assets/*": ["src/assets/*"]
+    },
+    "types": ["jest", "@types/jest", "@testing-library/jest-dom", "node"]
+  },
+  "include": ["src/**/*", "customTypes.d.ts"],
+  "exclude": ["node_modules", "dist"]
+}
