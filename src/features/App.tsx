@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Dashboard from '@features/Dashboard'
 
-const Wrapper = styled.div`
+const GloablWrapper = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
@@ -12,9 +12,9 @@ const Wrapper = styled.div`
 
 const App = () => {
   return (
-    <Wrapper>
+    <GloablWrapper>
       <Dashboard />
-    </Wrapper>
+    </GloablWrapper>
   )
 }
 

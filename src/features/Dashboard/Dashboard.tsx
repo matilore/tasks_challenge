@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ProgressBar from '@common/ProgressBar'
-import GroupedTasks from '@features/TasksChecker'
+import TasksChecker from '@features/TasksChecker'
 import { getTasks } from '@features/TasksChecker/datamodel/api'
 import { TasksWrapper, Title } from './styledComponents'
 import { TasksGroup } from './contracts'
@@ -20,7 +20,11 @@ const Dashboard = () => {
     <TasksWrapper>
       <Title>{TITLE}</Title>
       <ProgressBar value={sum} />
-      <GroupedTasks tasksList={tasksList} setSum={setSum} />
+      <TasksChecker
+        tasksList={tasksList}
+        setSum={setSum}
+        setTasksList={setTasksList}
+      />
     </TasksWrapper>
   )
 }

@@ -16,8 +16,8 @@ const GroupActionIcon = ({
     style={style || undefined}
   >
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d={
         selected
           ? 'M7.00005 1.39129L13.3333 7.99989L14 7.30425L7.00005 0L0 7.30436L0.666662 8L7.00005 1.39129Z'

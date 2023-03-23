@@ -9,5 +9,5 @@ export const TasksWrapper = styled.div`
 `
 
 export const Title = styled.h2`
-  font-weight: 700;
+  font-size: ${({ theme }) => theme.FONT_SIZES.EXTRA_LARGE};
 `

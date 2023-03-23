@@ -4,5 +4,5 @@ export interface CheckboxGroupProps {
     value: number
     checked: boolean
   }[]
-  onChange: (callback: (prevSum: number) => number) => void
+  onCheckboxChange: (index: number) => void
 }

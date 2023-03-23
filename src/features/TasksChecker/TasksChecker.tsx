@@ -13,11 +13,29 @@ import {
 } from './styledComponents'
 import { listenOutsideClick } from './hooks'
 import { TasksCheckerProps } from './contracts'
+import { getNextTasksState } from './utils'
 
-const TasksChecker = ({ tasksList, setSum }: TasksCheckerProps) => {
+const TasksChecker = ({
+  tasksList,
+  setSum,
+  setTasksList
+}: TasksCheckerProps) => {
   const [selectedId, setSelectedId] = useState(0)
   const wrapperRef = useRef(null)
   listenOutsideClick(wrapperRef, () => setSelectedId(0))
+
+  const handleCheckboxChange = useCallback(
+    (groupIndex: number) => (index: number) => {
+      const nextState = getNextTasksState(tasksList, groupIndex, index)
+      setTasksList(nextState)
+      setSum((sum: number) =>
+        nextState[groupIndex].tasks[index].checked
+          ? sum + nextState[groupIndex].tasks[index].value
+          : sum - nextState[groupIndex].tasks[index].value
+      )
+    },
+    [tasksList]
+  )
 
   const handleSelectedTaskGroup = useCallback(
     (event: MouseEvent<HTMLElement>) => {
@@ -26,11 +44,12 @@ const TasksChecker = ({ tasksList, setSum }: TasksCheckerProps) => {
       const idToSelect = selectedId !== clickedId ? clickedId : 0
       setSelectedId(idToSelect)
     },
-    []
+    [selectedId]
   )
+
   return (
     <GroupedTasksWrapper ref={wrapperRef}>
-      {tasksList.map(({ id, name, tasks }) => {
+      {tasksList.map(({ id, name, tasks }, index) => {
         const isAllChecked = tasks.every(task => !!task.checked)
         const isSelected = selectedId === id
         return (
@@ -53,7 +72,10 @@ const TasksChecker = ({ tasksList, setSum }: TasksCheckerProps) => {
             </TaskGroup>
             {isSelected && (
               <TasksList>
-                <CheckboxGroup options={tasks} onChange={setSum} />
+                <CheckboxGroup
+                  options={tasks}
+                  onCheckboxChange={handleCheckboxChange(index)}
+                />
               </TasksList>
             )}
           </TaskGroupWrapper>

@@ -1,4 +1,5 @@
-interface TasksGroup {
+import { Dispatch } from 'react'
+export interface TasksGroup {
   id: number
   name: string
   tasks: Task[]
@@ -13,4 +14,5 @@ interface Task {
 export interface TasksCheckerProps {
   tasksList: TasksGroup[]
   setSum: (callback: (prevSum: number) => number) => void
+  setTasksList: Dispatch<TasksGroup[]>
 }
