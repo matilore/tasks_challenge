@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, MouseEvent } from 'react'
+import React, { useState, useRef, useCallback, MouseEvent, memo } from 'react'
 import GroupIcon from '@assets/icons/TaskGroupIcon'
 import GroupActionIcon from '@assets/icons/GroupActionIcon'
 import CheckboxGroup from '@common/CheckboxGroup'
@@ -85,4 +85,4 @@ const TasksChecker = ({
   )
 }
 
-export default TasksChecker
+export default memo(TasksChecker)

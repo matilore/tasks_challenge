@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import {
   CheckboxWrapper,
   HiddenCheckbox,
@@ -36,4 +36,4 @@ const CheckboxGroup = ({ options, onCheckboxChange }: CheckboxGroupProps) => {
   )
 }
 
-export default CheckboxGroup
+export default memo(CheckboxGroup)
