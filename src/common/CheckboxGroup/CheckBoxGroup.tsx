@@ -19,11 +19,17 @@ const CheckboxGroup = ({ options, onCheckboxChange }: CheckboxGroupProps) => {
           key={index}
           onClick={() => handleCheckboxChange(index)}
         >
-          <HiddenCheckbox checked={option.checked} />
+          <HiddenCheckbox
+            id={option.description}
+            readOnly
+            checked={option.checked}
+          />
           <CheckboxIcon checked={option.checked}>
             {option.checked && <CheckmarkIcon />}
           </CheckboxIcon>
-          <CheckboxLabel>{option.description}</CheckboxLabel>
+          <CheckboxLabel htmlFor={option.description}>
+            {option.description}
+          </CheckboxLabel>
         </CheckboxWrapper>
       ))}
     </>

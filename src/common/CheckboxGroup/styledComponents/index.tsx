@@ -5,6 +5,7 @@ export const CheckboxWrapper = styled.div`
   display: flex;
   align-items: center;
   margin: 10px;
+  cursor: pointer;
 `
 
 export const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
@@ -34,5 +35,5 @@ export const CheckboxIcon = styled.svg<CheckboxProps>`
 
 export const CheckboxLabel = styled.label`
   margin-left: 16px;
-  cursor: pointer;
+  pointer-events: none;
 `
