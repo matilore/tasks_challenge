@@ -4,7 +4,8 @@ module.exports = {
     '^@components/(.*)$': '<rootDir>/src/components/$1',
     '^@styles/(.*)$': '<rootDir>/src/styles/$1',
     '^@common/(.*)$': '<rootDir>/src/common/$1',
-    '^@features/(.*)$': '<rootDir>/src/features/$1'
+    '^@features/(.*)$': '<rootDir>/src/features/$1',
+    '^@assets/(.*)$': '<rootDir>/src/assets/$1'
   },
   collectCoverageFrom: ['<rootDir>/**/*.{ts, tsx}'],
   roots: ['<rootDir>'],
