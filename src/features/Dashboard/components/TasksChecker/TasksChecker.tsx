@@ -17,7 +17,7 @@ import { getNextTasksState } from './utils'
 
 const TasksChecker = ({
   tasksList,
-  setSum,
+  setProgress,
   setTasksList
 }: TasksCheckerProps) => {
   const [selectedId, setSelectedId] = useState(0)
@@ -28,10 +28,10 @@ const TasksChecker = ({
     (groupIndex: number) => (index: number) => {
       const nextState = getNextTasksState(tasksList, groupIndex, index)
       setTasksList(nextState)
-      setSum((sum: number) =>
+      setProgress((progress: number) =>
         nextState[groupIndex].tasks[index].checked
-          ? sum + nextState[groupIndex].tasks[index].value
-          : sum - nextState[groupIndex].tasks[index].value
+          ? progress + nextState[groupIndex].tasks[index].value
+          : progress - nextState[groupIndex].tasks[index].value
       )
     },
     [tasksList]

@@ -8,21 +8,21 @@ import { TITLE } from './constants'
 
 const Dashboard = () => {
   const [tasksList, setTasksList] = useState<TasksGroup[]>([])
-  const [sum, setSum] = useState(0)
+  const [progress, setProgress] = useState(0)
 
   useEffect(() => {
     getTasks().then(({ normalizedSum, data }) => {
-      setSum(normalizedSum)
+      setProgress(normalizedSum)
       setTasksList(data)
     })
   }, [])
   return (
     <TasksWrapper>
       <Title>{TITLE}</Title>
-      <ProgressBar value={sum} />
+      <ProgressBar value={progress} />
       <TasksChecker
         tasksList={tasksList}
-        setSum={setSum}
+        setProgress={setProgress}
         setTasksList={setTasksList}
       />
     </TasksWrapper>

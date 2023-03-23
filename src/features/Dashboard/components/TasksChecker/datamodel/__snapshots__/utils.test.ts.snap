@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parseResponse correctly parses the response data 1`] = `
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Group 1",
+      "tasks": [
+        {
+          "checked": true,
+          "description": "Task 1",
+          "value": 10,
+        },
+        {
+          "checked": false,
+          "description": "Task 2",
+          "value": 20,
+        },
+        {
+          "checked": true,
+          "description": "Task 3",
+          "value": 30,
+        },
+      ],
+    },
+    {
+      "id": 2,
+      "name": "Group 2",
+      "tasks": [
+        {
+          "checked": false,
+          "description": "Task 4",
+          "value": 15,
+        },
+        {
+          "checked": true,
+          "description": "Task 5",
+          "value": 25,
+        },
+      ],
+    },
+  ],
+  "normalizedSum": 65,
+}
+`;

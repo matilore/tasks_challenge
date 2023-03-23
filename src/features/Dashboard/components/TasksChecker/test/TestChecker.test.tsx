@@ -6,7 +6,7 @@ import { ThemeProvider } from 'styled-components'
 import theme from '@styles/theme'
 import { tasksListMock } from './constants'
 
-const setSum = () => {}
+const setProgress = () => {}
 const setTasksList = () => {}
 
 describe('TasksChecker', () => {
@@ -15,7 +15,7 @@ describe('TasksChecker', () => {
       <ThemeProvider theme={theme}>
         <TasksChecker
           tasksList={tasksListMock}
-          setSum={setSum}
+          setProgress={setProgress}
           setTasksList={setTasksList}
         />
       </ThemeProvider>
@@ -29,7 +29,7 @@ describe('TasksChecker', () => {
       <ThemeProvider theme={theme}>
         <TasksChecker
           tasksList={tasksListMock}
-          setSum={setSum}
+          setProgress={setProgress}
           setTasksList={setTasksList}
         />
       </ThemeProvider>
@@ -54,7 +54,7 @@ describe('TasksChecker', () => {
       <ThemeProvider theme={theme}>
         <TasksChecker
           tasksList={tasksListMock}
-          setSum={setSum}
+          setProgress={setProgress}
           setTasksList={setTasksList}
         />
       </ThemeProvider>
@@ -72,7 +72,7 @@ describe('TasksChecker', () => {
       <ThemeProvider theme={theme}>
         <TasksChecker
           tasksList={tasksListMock}
-          setSum={setSum}
+          setProgress={setProgress}
           setTasksList={setTasksList}
         />
       </ThemeProvider>
@@ -88,14 +88,14 @@ describe('TasksChecker', () => {
     ).toBe(true)
   })
 
-  it('updates the total sum when checkboxes are clicked', () => {
+  it('updates the total progress when checkboxes are clicked', () => {
     const setSumMock = jest.fn()
     const setTasksListMock = jest.fn()
     const { getByText, getByLabelText } = render(
       <ThemeProvider theme={theme}>
         <TasksChecker
           tasksList={tasksListMock}
-          setSum={setSumMock}
+          setProgress={setSumMock}
           setTasksList={setTasksListMock}
         />
       </ThemeProvider>

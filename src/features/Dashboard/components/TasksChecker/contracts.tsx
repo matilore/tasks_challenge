@@ -13,6 +13,6 @@ interface Task {
 
 export interface TasksCheckerProps {
   tasksList: TasksGroup[]
-  setSum: (callback: (prevSum: number) => number) => void
+  setProgress: (callback: (prevSum: number) => number) => void
   setTasksList: Dispatch<TasksGroup[]>
 }
