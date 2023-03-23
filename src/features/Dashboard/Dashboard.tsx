@@ -1,27 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
 import ProgressBar from '@common/ProgressBar'
 import GroupedTasks from '@features/TasksChecker'
 import { getTasks } from '@features/TasksChecker/datamodel/api'
-
-const TasksWrapper = styled.div`
-  width: 600px;
-  hieght: 400px;
-`
-
-const Title = styled.h2``
-
-interface TasksGroup {
-  id: number
-  name: string
-  tasks: Task[]
-}
-
-interface Task {
-  description: string
-  value: number
-  checked: boolean
-}
+import { TasksWrapper, Title } from './styledComponents'
+import { TasksGroup } from './contracts'
+import { TITLE } from './constants'
 
 const Dashboard = () => {
   const [tasksList, setTasksList] = useState<TasksGroup[]>([])
@@ -35,7 +18,7 @@ const Dashboard = () => {
   }, [])
   return (
     <TasksWrapper>
-      <Title>Lodgify Grouped Tasks</Title>
+      <Title>{TITLE}</Title>
       <ProgressBar value={sum} />
       <GroupedTasks tasksList={tasksList} setSum={setSum} />
     </TasksWrapper>

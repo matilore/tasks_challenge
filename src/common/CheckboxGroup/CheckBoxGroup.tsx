@@ -6,29 +6,19 @@ import {
   CheckmarkIcon,
   CheckboxLabel
 } from './styledComponents'
+import { CheckboxGroupProps } from './contracts'
 
-interface CheckboxGroupProps {
-  options: {
-    description: string
-    value: number
-    checked: boolean
-  }[]
-  onChange: (callback: (prevSum: number) => number) => void
-}
-
-const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ options, onChange }) => {
+const CheckboxGroup = ({ options, onChange }: CheckboxGroupProps) => {
   const [tasks, setTasks] = useState(options)
   const handleCheckboxChange = (index: number) => {
     const newOptions = [...options]
     newOptions[index].checked = !newOptions[index].checked
 
-    onChange((sum: number) => {
-      if (newOptions[index].checked) {
-        return sum + newOptions[index].value
-      } else {
-        return sum - newOptions[index].value
-      }
-    })
+    onChange((sum: number) =>
+      newOptions[index].checked
+        ? sum + newOptions[index].value
+        : sum - newOptions[index].value
+    )
     setTasks(newOptions)
   }
   return (

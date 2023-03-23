@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useCallback, MouseEvent } from 'react'
 import GroupIcon from '@assets/icons/TaskGroupIcon'
 import GroupActionIcon from '@assets/icons/GroupActionIcon'
 import CheckboxGroup from '@common/CheckboxGroup'
@@ -12,47 +12,35 @@ import {
   TasksList
 } from './styledComponents'
 import { listenOutsideClick } from './hooks'
+import { TasksCheckerProps } from './contracts'
 
-interface TasksGroup {
-  id: number
-  name: string
-  tasks: Task[]
-}
-
-interface Task {
-  description: string
-  value: number
-  checked: boolean
-}
-
-const GroupedTasks = ({
-  tasksList,
-  setSum
-}: {
-  tasksList: TasksGroup[]
-  setSum: (callback: (prevSum: number) => number) => void
-}) => {
+const TasksChecker = ({ tasksList, setSum }: TasksCheckerProps) => {
   const [selectedId, setSelectedId] = useState(0)
-
   const wrapperRef = useRef(null)
   listenOutsideClick(wrapperRef, () => setSelectedId(0))
 
-  const handleSelectedTaskGroup = (event: React.MouseEvent<HTMLElement>) => {
-    const tasksGroupId = event.currentTarget.getAttribute('data-id')
-    const clickedId = Number(tasksGroupId)
-    const idToSelect = selectedId !== clickedId ? clickedId : 0
-    setSelectedId(idToSelect)
-  }
-
+  const handleSelectedTaskGroup = useCallback(
+    (event: MouseEvent<HTMLElement>) => {
+      const tasksGroupId = event.currentTarget.getAttribute('data-id')
+      const clickedId = Number(tasksGroupId)
+      const idToSelect = selectedId !== clickedId ? clickedId : 0
+      setSelectedId(idToSelect)
+    },
+    []
+  )
   return (
     <GroupedTasksWrapper ref={wrapperRef}>
       {tasksList.map(({ id, name, tasks }) => {
+        const isAllChecked = tasks.every(task => !!task.checked)
         const isSelected = selectedId === id
         return (
           <TaskGroupWrapper key={id}>
             <TaskGroup onClick={handleSelectedTaskGroup} data-id={id}>
-              <LabelWrapper>
-                <GroupIcon style={{ marginRight: '16px' }} />
+              <LabelWrapper isAllChecked={isAllChecked}>
+                <GroupIcon
+                  isAllChecked={isAllChecked}
+                  style={{ marginRight: '16px' }}
+                />
                 {name}
               </LabelWrapper>
               <Action>
@@ -75,4 +63,4 @@ const GroupedTasks = ({
   )
 }
 
-export default GroupedTasks
+export default TasksChecker

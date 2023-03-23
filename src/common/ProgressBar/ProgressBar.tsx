@@ -1,17 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { PorgressBarWrapper, PorgressBarContent } from './styledComponents'
+import { ProgressBarProps } from './contracts'
 
-interface ProgressBarProps {
-  value: number
-}
-
-const ProgressBar: React.FC<ProgressBarProps> = ({
-  value
-}: {
-  value: number
-}) => {
+const ProgressBar = ({ value }: ProgressBarProps) => {
   const [progress, setProgress] = useState(0)
   const progressRef = useRef(0)
+
+  const renderProgressText = useCallback(
+    (progress: number) => (progress ? <span>{`${progress}%`}</span> : null),
+    []
+  )
 
   useEffect(() => {
     const animateProgress = () => {
@@ -34,7 +32,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   return (
     <PorgressBarWrapper>
       <PorgressBarContent progress={progress}>
-        <span>{`${progress}%`}</span>
+        {renderProgressText(progress)}
       </PorgressBarContent>
     </PorgressBarWrapper>
   )

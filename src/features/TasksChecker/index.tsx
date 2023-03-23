@@ -1,1 +1,1 @@
-export { default as default } from './GroupedTasks'
+export { default as default } from './TasksChecker'

@@ -33,10 +33,15 @@ export const TaskGroup = styled.div`
   display: flex;
   justify-content: space-between;
 `
+interface LabelWrapperProps {
+  isAllChecked: boolean
+}
 
-export const LabelWrapper = styled.div`
+export const LabelWrapper = styled.div<LabelWrapperProps>`
   display: flex;
   align-items: center;
+  color: ${({ isAllChecked, theme }) =>
+    isAllChecked ? theme.COLORS.GREEN : 'inherit'};
 `
 
 export const Action = styled.div`
